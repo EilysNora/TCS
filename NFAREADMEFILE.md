@@ -1,12 +1,46 @@
 # NFA Simulator with λ-Transitions
 
-A C++ implementation of a Non-deterministic Finite Automaton (NFA) simulator that handles epsilon (λ) transitions and computes extended transition functions (δ*).
+Users can define an NFA (with epsilon transitions) and compute extended transition functions δ* using this C++-based nondeterministic finite automaton simulator.
 
-## Features
+## ✨ Features
+- **Complete NFA Configuration**: Define states, alphabet, and transition rules
+- **ε-Transitions Support**: Handles lambda (epsilon) transitions
+- **Extended Transition Functions**: Computes both:
+  - `δ*(q, a) = λ-closure(move(λ-closure(q), a))` 
+  - `δ*(T, a) = λ-closure(move(λ-closure(T), a))`
+- **Detailed Computation Tracing**: Shows each step of λ-closure and move operations
+- **Interactive Testing**: Continuously evaluate δ* until exit
 
-- **Complete NFA Simulation**: Handles both regular and epsilon transitions
-- **λ-Closure Computation**: Calculates epsilon closures for states and state sets
-- **Extended Transition Function**: Computes δ*(q, a) and δ*(T, a) as defined in formal language theory
-- **Interactive Interface**: User-friendly menu system for easy testing
-- **Robust Error Handling**: Validates all inputs and prevents crashes
-- **State Transition Tracing**: Shows complete path computations
+## 📥 Input Format
+The program guides you through these inputs:
+
+1. **Number of States** (e.g., 3 for q0-q2)  
+2. **Alphabet Symbols** (space-separated, include 'epsilon')  
+3. **Transitions** (one per line):  
+   `<from_state> <symbol> <to_state>`  
+   Example: `0 a 1` or `1 epsilon 2`  
+4. **Test Cases**:  
+   `<state> <symbol>` to compute δ*  
+
+## 📌 Example Session
+```text
+=== NFA Initialization ===
+Enter number of states: 3
+Enter alphabet symbols: a epsilon
+
+Enter transitions:
+0 a 1
+0 epsilon 2
+1 a 0
+1 epsilon 2
+done
+
+=== Testing ===
+Test case: 0 a
+Computing δ*(0, a):
+λ-closure(0) = {0 2}
+move({0 2}, a) = {1}
+λ-closure({1}) = {1 2}
+Result: {0 1 2}
+
+Test case: quit
